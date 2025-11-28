@@ -1,0 +1,81 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@drawable/test"
+    android:elevation="3dp"
+    android:orientation="vertical"
+    android:padding="16dp"
+    android:weightSum="7">
+
+    <TextView
+        android:id="@+id/header"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_weight="1"
+        android:background="#2d3748"
+        android:gravity="center"
+        android:padding="12dp"
+        android:text="Στατιστικά Δεδομένα"
+        android:textColor="#edf2f7"
+        android:textSize="24sp"
+        android:layout_marginBottom="16dp"
+        android:contentDescription="Statistics data header"/>
+
+    <TextView
+        android:id="@+id/total_entries"
+        style="@style/MyTextViewStyleBlue"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_weight="1.5"
+        android:layout_marginBottom="8dp"
+        android:text="Συνολικές Καταχωρήσεις: "
+        android:contentDescription="Total entries count" />
+
+    <TextView
+        android:id="@+id/entries_last_week"
+        style="@style/MyTextViewStyleBlue"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_weight="1.5"
+        android:layout_marginBottom="8dp"
+        android:text="Καταχωρήσεις Τελευταίας Εβδομάδας: "
+        android:contentDescription="Last week entries count" />
+
+    <TextView
+        android:id="@+id/region_most_entries"
+        style="@style/MyTextViewStyleBlue"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_weight="1.5"
+        android:layout_marginBottom="8dp"
+        android:text="Περιοχή με τις Περισσότερες Καταχωρήσεις: "
+        android:ellipsize="end"
+        android:maxLines="3"
+        android:contentDescription="Region with most entries" />
+
+    <TextView
+        android:id="@+id/region_least_entries"
+        style="@style/MyTextViewStyleBlue"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_weight="1.5"
+        android:layout_marginBottom="8dp"
+        android:text="Περιοχή με τις Λιγότερες Καταχωρήσεις: "
+        android:ellipsize="end"
+        android:maxLines="3"
+        android:contentDescription="Region with least entries" />
+    <TextView
+        android:id="@+id/tv_more_statistics"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="16dp"
+        android:text="➤ Δείτε περισσότερα στατιστικά"
+        android:textColor="#4299e1"
+        android:textSize="16sp"
+        android:padding="8dp"
+        android:background="?android:attr/selectableItemBackground"
+        android:clickable="true"
+        android:focusable="true"
+        android:contentDescription="View more statistics online" />
+</LinearLayout>

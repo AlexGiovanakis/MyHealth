@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android">
+
+    <item
+        android:id="@+id/navigation_statistics"
+        android:icon="@drawable/microbe"
+        android:title="Στατιστικά" />
+
+    <item
+        android:id="@+id/navigation_maps"
+        android:icon="@drawable/map"
+        android:title="Χάρτης" />
+    <item
+        android:id="@+id/navigation_log_out"
+        android:icon="@drawable/logout"
+        android:title="Αποσύνδεση" />
+</menu>

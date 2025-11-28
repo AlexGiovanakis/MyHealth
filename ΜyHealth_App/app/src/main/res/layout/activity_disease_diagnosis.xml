@@ -1,0 +1,351 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".DiseaseDiagnosis"
+    android:background="@drawable/test">
+
+    <!-- Dynamic Progress Header for 4 Steps -->
+    <LinearLayout
+        android:id="@+id/progressHeader"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        android:background="@android:color/white"
+        android:paddingTop="20dp"
+        android:paddingBottom="16dp"
+        android:paddingStart="18dp"
+        android:paddingEnd="18dp"
+        android:elevation="4dp"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent">
+
+        <!-- Step Information -->
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            android:gravity="center_vertical"
+            android:layout_marginBottom="12dp"
+            android:paddingTop="4dp"
+            android:paddingBottom="4dp">
+
+            <TextView
+                android:id="@+id/stepTitle"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:text="Βήμα 2: Επιλογή Τοποθεσίας"
+                android:textSize="16sp"
+                android:textStyle="bold"
+                android:textColor="@color/black" />
+
+            <TextView
+                android:id="@+id/stepCounter"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="2/4"
+                android:textSize="12sp"
+                android:textStyle="bold"
+                android:textColor="@android:color/white"
+                android:background="@android:color/holo_green_light"
+                android:padding="6dp"
+                android:paddingStart="10dp"
+                android:paddingEnd="10dp"
+                android:layout_marginStart="8dp" />
+
+        </LinearLayout>
+
+        <!-- Progress Bar with Steps -->
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            android:gravity="center_vertical"
+            android:paddingTop="6dp"
+            android:paddingBottom="8dp">
+
+            <ProgressBar
+                android:id="@+id/progressBar"
+                style="?android:attr/progressBarStyleHorizontal"
+                android:layout_width="0dp"
+                android:layout_height="8dp"
+                android:layout_weight="1"
+                android:progress="50"
+                android:max="100"
+                android:layout_marginEnd="12dp"
+                android:progressTint="@android:color/holo_green_dark" />
+
+            <TextView
+                android:id="@+id/nextStepHint"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Επιλέξτε τοποθεσία"
+                android:textSize="11sp"
+                android:textColor="@android:color/darker_gray"
+                android:textStyle="italic"
+                android:paddingStart="4dp"
+                android:paddingEnd="4dp" />
+
+        </LinearLayout>
+
+    </LinearLayout>
+
+    <!-- Main Content Area -->
+    <ScrollView
+        android:id="@+id/mainScrollView"
+        android:layout_width="0dp"
+        android:layout_height="0dp"
+        android:layout_margin="12dp"
+        android:fillViewport="true"
+        app:layout_constraintTop_toBottomOf="@id/progressHeader"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical"
+            android:gravity="center_horizontal">
+
+            <!-- Step 2: Location Selection Card -->
+            <LinearLayout
+                android:id="@+id/locationCard"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="vertical"
+                android:background="@android:color/white"
+                android:padding="20dp"
+                android:layout_marginBottom="16dp"
+                android:elevation="3dp">
+
+                <!-- Location Header -->
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="horizontal"
+                    android:gravity="center_vertical"
+                    android:background="#E3F2FD"
+                    android:padding="12dp"
+                    android:layout_marginBottom="16dp">
+
+                    <TextView
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="1"
+                        android:text=" Επιλογή Τοποθεσίας"
+                        android:textSize="18sp"
+                        android:textStyle="bold"
+                        android:textColor="@color/black" />
+
+                    <TextView
+                        android:id="@+id/locationStatus"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="Απαιτείται"
+                        android:textSize="12sp"
+                        android:textStyle="bold"
+                        android:textColor="@android:color/holo_orange_dark"
+                        android:background="@android:color/white"
+                        android:padding="4dp"
+                        android:paddingStart="8dp"
+                        android:paddingEnd="8dp" />
+
+                </LinearLayout>
+
+                <TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:text="Παρακαλούμε προσθέστε την τοποθεσία σας για πιο ακριβή διάγνωση"
+                    android:textSize="14sp"
+                    android:textColor="@android:color/darker_gray"
+                    android:layout_marginBottom="16dp"
+                    android:lineSpacingExtra="2dp" />
+
+                <Button
+                    android:id="@+id/btn_automatic_location"
+                    android:layout_width="match_parent"
+                    android:layout_height="56dp"
+                    android:text="📡 Αυτόματος Εντοπισμός Τοποθεσίας"
+                    android:textColor="@color/white"
+                    android:textSize="16sp"
+                    android:layout_marginBottom="12dp" />
+
+                <TextView
+                    android:id="@+id/selected_location"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:hint="Η τοποθεσία σας θα εμφανιστεί εδώ..."
+                    android:textSize="16sp"
+                    android:textColor="@color/black"
+                    android:textStyle="italic"
+                    android:background="#F5F5F5"
+                    android:padding="12dp"
+                    android:minHeight="48dp"
+                    android:gravity="center_vertical" />
+
+            </LinearLayout>
+
+            <!-- Step 3: Date Selection Card (Initially Hidden) -->
+            <LinearLayout
+                android:id="@+id/dateCard"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="vertical"
+                android:background="@android:color/white"
+                android:padding="20dp"
+                android:layout_marginBottom="16dp"
+                android:elevation="3dp"
+                android:visibility="gone">
+
+                <!-- Date Header -->
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="horizontal"
+                    android:gravity="center_vertical"
+                    android:background="#F3E5F5"
+                    android:padding="12dp"
+                    android:layout_marginBottom="16dp">
+
+                    <TextView
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="1"
+                        android:text="Επιλογή Ημερομηνίας"
+                        android:textSize="18sp"
+                        android:textStyle="bold"
+                        android:textColor="@color/black" />
+
+                    <TextView
+                        android:id="@+id/dateStatus"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="Απαιτείται"
+                        android:textSize="12sp"
+                        android:textStyle="bold"
+                        android:textColor="@android:color/holo_orange_dark"
+                        android:background="@android:color/white"
+                        android:padding="4dp"
+                        android:paddingStart="8dp"
+                        android:paddingEnd="8dp" />
+
+                </LinearLayout>
+
+                <TextView
+                    android:id="@+id/datePickerLabel"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="Πότε εμφανίστηκαν τα συμπτώματα;"
+                    android:textSize="14sp"
+                    android:textColor="@android:color/darker_gray"
+                    android:layout_marginBottom="12dp" />
+
+                <Spinner
+                    android:id="@+id/dateOptionsSpinner"
+                    android:layout_width="match_parent"
+                    android:layout_height="48dp"
+                    android:layout_marginBottom="8dp"
+                    android:background="@android:color/white"
+                    android:elevation="1dp"
+                    />
+                <TextView
+                    android:id="@+id/dateOptionsSpinnerTextview"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:textColor="@color/black"
+                    android:textSize="14sp"
+                    android:background="#F5F5F5"
+                    android:padding="12dp"
+                    android:minHeight="40dp"
+                    android:gravity="center_vertical"
+                    android:visibility="gone" />
+
+            </LinearLayout>
+
+            <!-- Step 4: Results Card (Initially Hidden) -->
+            <LinearLayout
+                android:id="@+id/resultsCard"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="vertical"
+                android:background="@android:color/white"
+                android:padding="20dp"
+                android:layout_marginBottom="16dp"
+                android:elevation="3dp"
+                android:visibility="gone">
+
+                <!-- Results Header -->
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="horizontal"
+                    android:gravity="center_vertical"
+                    android:background="#E8F5E8"
+                    android:padding="12dp"
+                    android:layout_marginBottom="16dp">
+
+                    <TextView
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="1"
+                        android:text="Αποτελέσματα Διάγνωσης"
+                        android:textSize="18sp"
+                        android:textStyle="bold"
+                        android:textColor="@color/black" />
+
+                    <TextView
+                        android:id="@+id/resultsStatus"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="Έτοιμα"
+                        android:textSize="12sp"
+                        android:textStyle="bold"
+                        android:textColor="@android:color/white"
+                        android:background="@android:color/holo_green_dark"
+                        android:padding="4dp"
+                        android:paddingStart="8dp"
+                        android:paddingEnd="8dp" />
+
+                </LinearLayout>
+
+                <Button
+                    android:id="@+id/actionButton"
+                    android:layout_width="match_parent"
+                    android:layout_height="56dp"
+                    android:text="🔍 Εμφάνιση Αποτελεσμάτων"
+                    android:textSize="16sp"
+                    android:layout_marginBottom="16dp" />
+
+                <TextView
+                    android:id="@+id/listViewLabel"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="Λίστα Αποτελεσμάτων:"
+                    android:textSize="16sp"
+                    android:textStyle="bold"
+                    android:textColor="@color/black"
+                    android:layout_marginBottom="8dp" />
+
+                <androidx.recyclerview.widget.RecyclerView
+                    android:id="@+id/listView1234"
+                    android:layout_width="match_parent"
+                    android:layout_height="200dp"
+                    android:background="#F9F9F9"
+                    android:padding="8dp"
+                    android:visibility="gone" />
+
+            </LinearLayout>
+
+        </LinearLayout>
+
+    </ScrollView>
+
+    <!-- Back to Symptoms FAB (Hidden initially) -->
+
+
+</androidx.constraintlayout.widget.ConstraintLayout>

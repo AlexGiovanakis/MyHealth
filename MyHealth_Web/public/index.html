@@ -1,0 +1,328 @@
+<!DOCTYPE html>
+<html lang="el">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Ταμπλό Αναλυτικών Υγείας</title>
+    <link rel="stylesheet" href="styles.css">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/flatpickr/dist/flatpickr.min.css">
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/3.9.1/chart.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/flatpickr"></script>
+    <script src="https://cdn.jsdelivr.net/npm/flatpickr/dist/l10n/gr.js"></script>
+</head>
+
+<body>
+    <div class="container">
+        <div class="header">
+            <h1>🏥 Ταμπλό Αναλυτικών Υγείας</h1>
+            <p>Πληροφορίες σε πραγματικό χρόνο από τα δεδομένα αξιολόγησης υγείας σας</p>
+        </div>
+
+        <div class="filters">
+            <!-- Age Range Multi-Select -->
+            <div class="filter-group">
+                <label for="ageFilter">Ηλικιακό Εύρος:</label>
+                <div class="multi-select-container">
+                    <div class="multi-select-display" id="ageDisplay">
+                        <span class="placeholder">Επιλέξτε ηλικιακά εύρη...</span>
+                        <span class="dropdown-arrow">▼</span>
+                    </div>
+                    <div class="multi-select-dropdown" id="ageDropdown">
+                        <div class="select-all-container">
+                            <label>
+                                <input type="checkbox" id="selectAllAges"> Επιλογή όλων
+                            </label>
+                        </div>
+                        <div class="options-container" id="ageOptions">
+                            <div class="option-item">
+                                <input type="checkbox" id="age_0-17" value="0-17">
+                                <label for="age_0-17">Κάτω από 18</label>
+                            </div>
+                            <div class="option-item">
+                                <input type="checkbox" id="age_18-30" value="18-30">
+                                <label for="age_18-30">18-30</label>
+                            </div>
+                            <div class="option-item">
+                                <input type="checkbox" id="age_31-50" value="31-50">
+                                <label for="age_31-50">31-50</label>
+                            </div>
+                            <div class="option-item">
+                                <input type="checkbox" id="age_51-70" value="51-70">
+                                <label for="age_51-70">51-70</label>
+                            </div>
+                            <div class="option-item">
+                                <input type="checkbox" id="age_70plus" value="70+">
+                                <label for="age_70plus">70+</label>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Gender Multi-Select -->
+            <div class="filter-group">
+                <label for="genderFilter">Φύλο:</label>
+                <div class="multi-select-container">
+                    <div class="multi-select-display" id="genderDisplay">
+                        <span class="placeholder">Επιλέξτε φύλα...</span>
+                        <span class="dropdown-arrow">▼</span>
+                    </div>
+                    <div class="multi-select-dropdown" id="genderDropdown">
+                        <div class="select-all-container">
+                            <label>
+                                <input type="checkbox" id="selectAllGenders"> Επιλογή όλων
+                            </label>
+                        </div>
+                        <div class="options-container" id="genderOptions">
+                            <div class="option-item">
+                                <input type="checkbox" id="gender_male" value="Male">
+                                <label for="gender_male">Άνδρας</label>
+                            </div>
+                            <div class="option-item">
+                                <input type="checkbox" id="gender_female" value="Female">
+                                <label for="gender_female">Γυναίκα</label>
+                            </div>
+                            <div class="option-item">
+                                <input type="checkbox" id="gender_other" value="Other">
+                                <label for="gender_other">Άλλο</label>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- City Multi-Select -->
+            <div class="filter-group">
+                <label for="cityFilter">Πόλη:</label>
+                <div class="multi-select-container">
+                    <div class="multi-select-display" id="cityDisplay">
+                        <span class="placeholder">Επιλέξτε πόλεις...</span>
+                        <span class="dropdown-arrow">▼</span>
+                    </div>
+                    <div class="multi-select-dropdown" id="cityDropdown">
+                        <div class="search-container">
+                            <input type="text" id="citySearch" placeholder="🔍 Αναζήτηση...">
+                        </div>
+                        <div class="select-all-container">
+                            <label>
+                                <input type="checkbox" id="selectAllCities"> Επιλογή όλων
+                            </label>
+                        </div>
+                        <div class="options-container" id="cityOptions">
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Ailments Multi-Select -->
+            <div class="filter-group">
+                <label for="ailmentFilter">Ασθένειες:</label>
+                <div class="multi-select-container">
+                    <div class="multi-select-display" id="ailmentDisplay">
+                        <span class="placeholder">Επιλέξτε ασθένειες...</span>
+                        <span class="dropdown-arrow">▼</span>
+                    </div>
+                    <div class="multi-select-dropdown" id="ailmentDropdown">
+                        <div class="search-container">
+                            <input type="text" id="ailmentSearch" placeholder="🔍 Αναζήτηση...">
+                        </div>
+                        <div class="select-all-container">
+                            <label>
+                                <input type="checkbox" id="selectAllAilments"> Επιλογή όλων
+                            </label>
+                        </div>
+                        <div class="options-container" id="ailmentOptions">
+                            <!-- Options will be populated by JavaScript -->
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Symptoms Multi-Select -->
+            <div class="filter-group">
+                <label for="symptomFilter">Συμπτώματα:</label>
+                <div class="multi-select-container">
+                    <div class="multi-select-display" id="symptomDisplay">
+                        <span class="placeholder">Επιλέξτε συμπτώματα...</span>
+                        <span class="dropdown-arrow">▼</span>
+                    </div>
+                    <div class="multi-select-dropdown" id="symptomDropdown">
+                        <!-- ✅ FIXED: Added missing search input for symptoms -->
+                        <div class="search-container">
+                            <input type="text" id="symptomSearch" placeholder="🔍 Αναζήτηση...">
+                        </div>
+                        <div class="select-all-container">
+                            <label>
+                                <input type="checkbox" id="selectAllSymptoms"> Επιλογή όλων
+                            </label>
+                        </div>
+                        <div class="options-container" id="symptomOptions">
+                            <!-- Options populated by JavaScript -->
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Date Range Filter -->
+            <div class="filter-group">
+                <label for="dateFilter">Περίοδος:</label>
+                <input type="text" id="dateFilter" placeholder="Επιλέξτε ημερομηνίες" autocomplete="off" readonly
+                    style="cursor: pointer; background: white; border: 2px solid #667eea; 
+                    border-radius: 8px; padding: 10px; font-size: 14px; width: 100%;">
+            </div>
+
+                   </div>
+
+             <div class="filter-actions">
+            <button id="clearAllFilters" class="clear-all-btn">
+                🗑️ Καθαρισμός Όλων των Φίλτρων
+            </button>
+            <div class="filter-summary" id="filterSummary">
+                <span id="activeFiltersCount">0 ενεργά φίλτρα</span>
+            </div>
+        </div>
+
+        <div class="stats-grid">
+            <div class="stat-card">
+                <h3>Συνολικές Αξιολογήσεις</h3>
+                <div class="value" id="totalAssessments">0</div>
+            </div>
+            <div class="stat-card">
+                <h3>Μέσος Όρος Ταιριάσματος %</h3>
+                <div class="value" id="avgMatch">0%</div>
+            </div>
+            <div class="stat-card">
+                <h3>Πιο Συχνή Ασθένεια</h3>
+                <div class="value" id="topAilment">-</div>
+            </div>
+            <div class="stat-card">
+                <h3>Πιο Συχνό Σύμπτωμα</h3>
+                <div class="value" id="mostCommonSymptom">-</div>
+            </div>
+            <div class="stat-card">
+                <h3>Πόλεις που Καλύπτονται</h3>
+                <div class="value" id="citiesCount">0</div>
+            </div>
+        </div>
+
+        <div id="loading" class="loading">Φόρτωση δεδομένων υγείας από το Firebase...</div>
+
+        <div id="chartsContainer" class="charts-grid" style="display: none;">
+            <!-- Standard Charts -->
+            <div class="chart-container">
+                <h3>👥 Κατανομή Ηλικίας</h3>
+                <div class="chart-wrapper">
+                    <canvas id="ageChart"></canvas>
+                </div>
+            </div>
+
+            <div class="chart-container">
+                <h3>⚧ Κατανομή Φύλου</h3>
+                <div class="chart-wrapper">
+                    <canvas id="genderChart"></canvas>
+                </div>
+            </div>
+
+            <!-- Filtered Symptoms Chart -->
+            <div class="chart-container">
+                <h3>🔍 Κορυφαία Συμπτώματα </h3>
+                <div class="chart-controls">
+                    <div class="chart-info">
+                        <span id="symptomsChartInfo">📊 Φόρτωση...</span>
+                    </div>
+                </div>
+                <div class="chart-wrapper">
+                    <canvas id="symptomsChart"></canvas>
+                </div>
+            </div>
+
+            <!-- Filtered Ailments Chart -->
+            <div class="chart-container">
+                <h3>🏥 Κορυφαίες Ασθένειες </h3>
+                <div class="chart-controls">
+                    <div class="chart-info">
+                        <span id="ailmentsChartInfo">📊 Φόρτωση...</span>
+                    </div>
+                </div>
+                <div class="chart-wrapper">
+                    <canvas id="ailmentsChart"></canvas>
+                </div>
+            </div>
+
+            <div class="chart-container">
+                <h3>📊 Κατανομή Ποσοστού Ταιριάσματος</h3>
+                <div class="chart-wrapper">
+                    <canvas id="matchChart"></canvas>
+                </div>
+            </div>
+
+            <div class="chart-container">
+                <h3>🌍 Γεωγραφική Κατανομή</h3>
+                <div class="chart-wrapper">
+                    <canvas id="cityChart"></canvas>
+                </div>
+            </div>
+
+            <div class="chart-container">
+                <h3>⚕️ Ηλικία έναντι Συχνών Ασθενειών</h3>
+                <div class="chart-wrapper">
+                    <canvas id="ageAilmentChart"></canvas>
+                </div>
+            </div>
+
+            <!-- Main Timeline Charts -->
+            <div class="chart-container">
+                <h3>📈 Συμπτώματα στο Χρόνο</h3>
+                <div class="chart-controls">
+                    <div class="chart-info">
+                        <span id="symptomsTimelineInfo">📊 Φόρτωση...</span>
+                    </div>
+                </div>
+                <div class="chart-wrapper">
+                    <canvas id="symptomsTimelineChart"></canvas>
+                </div>
+            </div>
+
+            <div class="chart-container">
+                <h3>📈 Ασθένειες στο Χρόνο</h3>
+                <div class="chart-controls">
+                    <div class="chart-info">
+                        <span id="diseasesTimelineInfo">📊 Φόρτωση...</span>
+                    </div>
+                </div>
+                <div class="chart-wrapper">
+                    <canvas id="diseasesTimelineChart"></canvas>
+                </div>
+            </div>
+
+            <!-- ✅ FIXED: Location-based Timeline Charts with proper titles and functionality -->
+            <div class="chart-container" data-chart-type="location">
+                <h3>🌍📈 Συμπτώματα ανά Τοποθεσία στο Χρόνο</h3>
+                <div class="chart-controls">
+                    <div class="chart-info">
+                        <span id="singleSymptomTimelineInfo">📊 Φόρτωση...</span>
+                    </div>
+                </div>
+                <div class="chart-wrapper">
+                    <canvas id="singleSymptomTimelineChart"></canvas>
+                </div>
+            </div>
+
+            <div class="chart-container" data-chart-type="location">
+                <h3>🌍🏥 Ασθένειες ανά Τοποθεσία στο Χρόνο</h3>
+                <div class="chart-controls">
+                    <div class="chart-info">
+                        <span id="singleConditionTimelineInfo">📊 Φόρτωση...</span>
+                    </div>
+                </div>
+                <div class="chart-wrapper">
+                    <canvas id="singleConditionTimelineChart"></canvas>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script type="module" src="js/Dashboard.js" defer></script>
+</body>
+
+</html>

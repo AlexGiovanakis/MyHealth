@@ -1,0 +1,18 @@
+<resources>
+    <string name="app_name">My Health</string>
+    <string name="buttonRegister">Register</string>
+    <string name="buttonCancel">Cancel</string>
+    <string name="exitSubmit">Exit</string>
+    <string name="settingsSubmit">Submit</string>
+    <string name="mapSubmit">Map</string>
+    <string name="sizeOfCasesSubmit">Size of Cases</string>
+    <string name="startSubmit">Start</string>
+    <string name="labelUsername">Username</string>Password
+    <string name="labelPassword">Password</string>
+    <string name="labeldob">Date Of Birth</string>
+    <string name="labelemail">E-mail</string>
+    <string name="labelFullName">FullName</string>
+    <string name="labelGender">Gender</string>
+    <string name="title_activity_maps">MapsActivity</string>
+    <string name="title_activity_map_sickness">MapSicknessActivity</string>
+</resources>
